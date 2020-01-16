@@ -39,8 +39,7 @@ public class ShapeCollector {
     }
 
     public String showFigures(){
-            //return null to mark unsuccessful operation output
-        return null;
+        System.out.println(shapeCollection);
     }
     public int getCollectionSize(){
             return shapeCollection.size();
