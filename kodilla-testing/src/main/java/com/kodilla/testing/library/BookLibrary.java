@@ -1,5 +1,6 @@
 package com.kodilla.testing.library;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,17 +22,6 @@ public class BookLibrary {
     }
 
     public List<Book> listBooksInHandsOf(LibraryUser libraryUser){
-        List<Book> bookList = new ArrayList<Book>();
-        List<Book> resultList = new ArrayList<Book>();
-        if(libraryUser.equals(new LibraryUser("John","Zero","02312312312"))) return bookList;
-
-        if(libraryUser.equals(new LibraryUser("John","One","12312312312"))) {
-            resultList = libraryDatabase.listBooksInHandsOf(libraryUser);
-        }
-        if(libraryUser.equals(new LibraryUser("John","Five","52312312312"))) {
-            resultList = libraryDatabase.listBooksInHandsOf(libraryUser);
-        }
-        bookList = resultList;
-        return bookList;
+        return libraryDatabase.listBooksInHandsOf(libraryUser);
     }
 }
