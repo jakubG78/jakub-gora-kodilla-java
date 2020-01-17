@@ -123,9 +123,9 @@ public class ForumStatisticsTestSuite {
         double resultComments = forumStatistics.avrgUserCommentsCounter;
         double resultPostComments = forumStatistics.avrgPostsCommentsCounter;
         //Then
-        Assert.assertEquals(1, resultPost);
-        Assert.assertEquals(1, resultComments);
-        Assert.assertEquals(1, resultPostComments);
+        Assert.assertEquals(1, resultPost, 0.001);
+        Assert.assertEquals(1, resultComments, 0.001);
+        Assert.assertEquals(1, resultPostComments, 0.001);
     }
     @Test
     public void testAvrg0100100(){
@@ -142,9 +142,9 @@ public class ForumStatisticsTestSuite {
         double resultComments = forumStatistics.avrgUserCommentsCounter;
         double resultPostComments = forumStatistics.avrgPostsCommentsCounter;
         //Then
-        Assert.assertEquals(0, resultPost);
-        Assert.assertEquals(0, resultComments);
-        Assert.assertEquals(1, resultPostComments);
+        Assert.assertEquals(0, resultPost, 0.001);
+        Assert.assertEquals(0, resultComments, 0.001);
+        Assert.assertEquals(1, resultPostComments, 0.001);
     }
     @Test
     public void testAvrg00100(){
@@ -161,9 +161,9 @@ public class ForumStatisticsTestSuite {
         double resultComments = forumStatistics.avrgUserCommentsCounter;
         double resultPostComments = forumStatistics.avrgPostsCommentsCounter;
         //Then
-        Assert.assertEquals(0, resultPost);
-        Assert.assertEquals(0, resultComments);
-        Assert.assertEquals(0, resultPostComments);
+        Assert.assertEquals(0, resultPost, 0.001);
+        Assert.assertEquals(0, resultComments, 0.001);
+        Assert.assertEquals(0, resultPostComments, 0.001);
     }
     @Test
     public void testAvrg000(){
@@ -180,9 +180,9 @@ public class ForumStatisticsTestSuite {
         double resultComments = forumStatistics.avrgUserCommentsCounter;
         double resultPostComments = forumStatistics.avrgPostsCommentsCounter;
         //Then
-        Assert.assertEquals(0, resultPost);
-        Assert.assertEquals(0, resultComments);
-        Assert.assertEquals(0, resultPostComments);
+        Assert.assertEquals(0, resultPost, 0.001);
+        Assert.assertEquals(0, resultComments, 0.001);
+        Assert.assertEquals(0, resultPostComments, 0.001);
     }
     @Test
     public void testAvrg10000(){
@@ -202,9 +202,9 @@ public class ForumStatisticsTestSuite {
         double resultComments = forumStatistics.avrgUserCommentsCounter;
         double resultPostComments = forumStatistics.avrgPostsCommentsCounter;
         //Then
-        Assert.assertEquals(0, resultPost);
-        Assert.assertEquals(0, resultComments);
-        Assert.assertEquals(0, resultPostComments);
+        Assert.assertEquals(0, resultPost, 0.001);
+        Assert.assertEquals(0, resultComments, 0.001);
+        Assert.assertEquals(0, resultPostComments, 0.001);
     }
     @Test
     public void testAvrg1001000(){
@@ -224,9 +224,9 @@ public class ForumStatisticsTestSuite {
         double resultComments = forumStatistics.avrgUserCommentsCounter;
         double resultPostComments = forumStatistics.avrgPostsCommentsCounter;
         //Then
-        Assert.assertEquals(1, resultPost);
-        Assert.assertEquals(0, resultComments);
-        Assert.assertEquals(0, resultPostComments);
+        Assert.assertEquals(1, resultPost, 0.001);
+        Assert.assertEquals(0, resultComments, 0.001);
+        Assert.assertEquals(0, resultPostComments, 0.001);
     }
     @Test
     public void testAvrg1000100(){
@@ -246,9 +246,9 @@ public class ForumStatisticsTestSuite {
         double resultComments = forumStatistics.avrgUserCommentsCounter;
         double resultPostComments = forumStatistics.avrgPostsCommentsCounter;
         //Then
-        Assert.assertEquals(0, resultPost);
-        Assert.assertEquals(1, resultComments);
-        Assert.assertEquals(0, resultPostComments);
+        Assert.assertEquals(0, resultPost, 0.001);
+        Assert.assertEquals(1, resultComments, 0.001);
+        Assert.assertEquals(0, resultPostComments, 0.001);
     }
     @Test
     public void testAvrg01000(){
@@ -265,8 +265,8 @@ public class ForumStatisticsTestSuite {
         double resultComments = forumStatistics.avrgUserCommentsCounter;
         double resultPostComments = forumStatistics.avrgPostsCommentsCounter;
         //Then
-        Assert.assertEquals(0, resultPost);
-        Assert.assertEquals(0, resultComments);
-        Assert.assertEquals(0, resultPostComments);
+        Assert.assertEquals(0, resultPost, 0.001);
+        Assert.assertEquals(0, resultComments, 0.001);
+        Assert.assertEquals(0, resultPostComments, 0.001);
     }
 }
