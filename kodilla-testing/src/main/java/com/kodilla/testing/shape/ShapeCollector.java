@@ -38,7 +38,7 @@ public class ShapeCollector {
         return theShape;
     }
 
-    public String showFigures(){
+    public void showFigures(){
         System.out.println(shapeCollection);
     }
     public int getCollectionSize(){
