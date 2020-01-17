@@ -26,14 +26,10 @@ public class BookLibrary {
         if(libraryUser.equals(new LibraryUser("John","Zero","02312312312"))) return bookList;
 
         if(libraryUser.equals(new LibraryUser("John","One","12312312312"))) {
-            resultList.add(new Book("Book1","Author1",2001));
+            resultList = libraryDatabase.listBooksInHandsOf(libraryUser);
         }
         if(libraryUser.equals(new LibraryUser("John","Five","52312312312"))) {
-            resultList.add(new Book("Book1","Author1",2001));
-            resultList.add(new Book("Book2","Author2",2002));
-            resultList.add(new Book("Book3","Author3",2003));
-            resultList.add(new Book("Book4","Author4",2004));
-            resultList.add(new Book("Book5","Author5",2005));
+            resultList = libraryDatabase.listBooksInHandsOf(libraryUser);
         }
         bookList = resultList;
         return bookList;
