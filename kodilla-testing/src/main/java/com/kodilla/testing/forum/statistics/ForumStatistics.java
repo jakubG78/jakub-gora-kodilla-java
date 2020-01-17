@@ -13,22 +13,21 @@ public class ForumStatistics{
 
     public void calculateAdvStatistics(Statistics statistics) {
 
-    usersCounter = 2;
-    postsCounter = 2;
-    commentsCounter = 2;
-    avrgUserPostsCounter = 2;
-    avrgUserCommentsCounter = 2;
-    avrgPostsCommentsCounter = 2;
+        usersCounter = statistics.usersNames().size();
+        postsCounter = statistics.postsCount();
+        commentsCounter = statistics.commentsCount();
 
-    }
-
-    public void showStatistics() {
-        System.out.println("Forum statistics");
-        System.out.println("Users: " + usersCounter);
-        System.out.println("Post: " + postsCounter);
-        System.out.println("Comments: " + commentsCounter);
-        System.out.println("Average post per user: " + avrgUserPostsCounter);
-        System.out.println("Average comment per user: " + avrgUserCommentsCounter);
-        System.out.println("Average comment per post: " + avrgPostsCommentsCounter);
+        if (usersCounter != 0) {
+            avrgUserPostsCounter = postsCounter / usersCounter;
+            avrgUserCommentsCounter = commentsCounter / usersCounter;
+        } else {
+            avrgUserPostsCounter = 0;
+            avrgUserCommentsCounter = 0;
+        }
+        if(postsCounter != 0){
+            avrgPostsCommentsCounter = commentsCounter / postsCounter;
+        }else {
+            avrgPostsCommentsCounter = 0;
+        }
     }
 }
