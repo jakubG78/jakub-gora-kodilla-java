@@ -22,7 +22,7 @@ public class WorldTestSuite {
         theEurope.addCountry(theNetherlands);
 
         Continent theAsia = new Continent("Asia");
-        Country theChina = new Country("130851250");
+        Country theChina = new Country("130851251");
         Country theIndia = new Country("126851250");
         theAsia.addCountry(theChina);
         theAsia.addCountry(theIndia);
@@ -70,7 +70,7 @@ public class WorldTestSuite {
         totalPeopleQuantity = earth.getPeopleQuantity();
 
         //Then
-        BigDecimal expectedPeopleQuantity = new BigDecimal("684140346");
+        BigDecimal expectedPeopleQuantity = new BigDecimal("684140347");
         Assert.assertEquals(expectedPeopleQuantity,totalPeopleQuantity);
     }
 }
