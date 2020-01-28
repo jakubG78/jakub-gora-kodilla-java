@@ -10,12 +10,9 @@ public class FirstChallenge {
     }
 
     public static void main(String[] args) {
-
         FirstChallenge firstChallenge = new FirstChallenge();
-
         try {
-
-            System.out.println("Operation result: " + firstChallenge.divide(10,0));
+             System.out.println("Operation result: " + firstChallenge.divide(10,0));
 
         } catch (ArithmeticException a){
 
