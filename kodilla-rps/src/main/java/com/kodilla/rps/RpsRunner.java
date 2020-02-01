@@ -3,6 +3,7 @@ package com.kodilla.rps;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class RpsRunner {
 
@@ -14,7 +15,7 @@ public class RpsRunner {
     public static void main(String[] args) {
         boolean end = false;
         String playerName = "Bob";
-        int maxRounds = 1;
+        int maxRounds;
         char playerChoice;
         char computerChoice = '3';
         int playerScore = 0;
@@ -25,13 +26,14 @@ public class RpsRunner {
             moveDisplay.add("Rock");
             moveDisplay.add("Paper");
             moveDisplay.add("Scissors");
-
+            Scanner input = new Scanner(System.in);
             System.out.println("Welcome to Rock-Paper-Scissors game.");
             System.out.println("Enter your name: ");
-            //scanner to put in playerName value
+            playerName = input.nextLine();
             System.out.println("Welcome " + playerName + ".");
             System.out.println("Enter how many rounds you`d like to play: ");
-            //scaner to put in maxRounds initial value.
+            maxRounds = input.nextInt();
+            input.nextLine();
             System.out.println("How to play: ");
             System.out.println("press 1 to play 'Rock'.");
             System.out.println("press 2 to play 'Paper'.");
@@ -40,14 +42,15 @@ public class RpsRunner {
             System.out.println("press 'n' to restart the game");
             int roundsCounter = 0;
             while(roundsCounter != maxRounds) {
-                System.out.println("Starting round: "+ roundsCounter + 1);
+                int displayRounds = roundsCounter + 1;
+                System.out.println("\n" + "Starting round: "+ displayRounds);
                 System.out.println("Choose your pick:");
-                playerChoice = '1';
+                playerChoice = input.nextLine().charAt(0);
                 //scanner to put value in playersChoice
                 if (playerChoice == 'x') {
                     char quitButton = 'n';
                     System.out.println("Are you sure you want to quit? (y/n)");
-                    //scaner to put value in quitButton
+                    quitButton = input.nextLine().charAt(0);
                     if (quitButton == 'y') {
                         end = true;
                         roundsCounter = maxRounds;
@@ -56,13 +59,13 @@ public class RpsRunner {
                     if (playerChoice == 'n') {
                         char quitButton = 'n';
                         System.out.println("Are you sure you want to restart game? (y/n)");
-                        //scaner to put value in quitButton
+                        quitButton = input.nextLine().charAt(0);
                         if (quitButton == 'y') {
                             roundsCounter = maxRounds;
                         }
                     } else {
-                        System.out.println("Players pick is: " + moveDisplay.get((int)playerChoice-1) + ", computers pick is: " + moveDisplay.get((int)computerChoice-1));
-                        computerChoice = (char)(generateNumber(3) + 1);
+                        computerChoice = (char)(generateNumber(3) + 49);
+                        System.out.println("Players pick is: " + moveDisplay.get((int)(playerChoice-49)) + ", computers pick is: " + moveDisplay.get((int)(computerChoice-49)));
                         if ((playerChoice == '1'&& computerChoice=='2')||(playerChoice=='2'&&computerChoice=='3')||(playerChoice=='3'&&computerChoice=='1'))
                         {
                             System.out.println("Computer wins!");
@@ -78,10 +81,12 @@ public class RpsRunner {
                         }
                         System.out.println("Current score, player " + playerScore + " wins, computer " + computerScore + " wins.");
                         roundsCounter++;
+                        if(roundsCounter==maxRounds){
+                            end = true;
+                        }
                     }
                 }
             }
-            end = true;
         }
     }
 }
