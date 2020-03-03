@@ -8,8 +8,7 @@ public class MovieStoreStream {
         MovieStore movieStore = new MovieStore();
 
         String resultMovieString = movieStore.getMovies().entrySet().stream()
-                .map(entry -> entry.getValue())
-                .flatMap(entry -> entry.stream())
+                .flatMap(entry -> entry.getValue().stream())
                 .collect(Collectors.joining("!"));
 
         System.out.println(resultMovieString);
