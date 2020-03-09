@@ -1,6 +1,6 @@
 package com.kodilla.good.patterns.challenges;
 
-public class SmSService implements InformationService {
+public class SmsService implements InformationService {
 
     @Override
     public void inform(User user){

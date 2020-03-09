@@ -6,7 +6,7 @@ public class OrderRunner {
         OrderRequestRetriever orderRequestRetriever = new OrderRequestRetriever();
         OrderRequest orderRequest = orderRequestRetriever.retrieve();
 
-        ProductOrderService productOrderService = new ProductOrderService(new SmSService(), new MobileOrderService(), new MobileOrderRepository());
+        ProductOrderService productOrderService = new ProductOrderService(new SmsService(), new MobileOrderService(), new MobileOrderRepository());
         productOrderService.process(orderRequest);
     }
 }
