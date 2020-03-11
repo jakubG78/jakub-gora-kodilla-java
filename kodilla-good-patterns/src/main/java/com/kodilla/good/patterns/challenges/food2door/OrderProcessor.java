@@ -5,8 +5,7 @@ public class OrderProcessor {
     private FoodOrderService foodOrderService;
     private FoodOrderRepository foodOrderRepository;
 
-    public OrderProcessor(final FoodOrderService foodOrderService, final FoodOrderRepository foodOrderRepository) {
-        this.foodOrderService = foodOrderService;
+    public OrderProcessor(final FoodOrderRepository foodOrderRepository) {
         this.foodOrderRepository = foodOrderRepository;
     }
 
