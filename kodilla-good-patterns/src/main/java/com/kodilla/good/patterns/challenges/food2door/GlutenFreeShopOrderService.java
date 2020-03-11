@@ -5,6 +5,7 @@ public class GlutenFreeShopOrderService implements FoodOrderService {
         System.out.println("Processing order form " + foodSupplier.getName());
         System.out.println("Checking for gluten in ordered products ... there is none. Moving on...");
         System.out.println("Ordering: " + foodItem.getQuantity() + foodItem.getItemUnits() + " of " + foodItem.getName()+"\n");
-        return true;
+        if (foodItem.equals(null)) return false;
+        else return true;
     }
 }

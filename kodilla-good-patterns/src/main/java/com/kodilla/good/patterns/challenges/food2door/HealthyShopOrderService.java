@@ -5,6 +5,7 @@ public class HealthyShopOrderService implements FoodOrderService {
         System.out.println("Processing order form " + foodSupplier.getName());
         System.out.println("Checking with WHO if current order items are healthy... OK!");
         System.out.println("Ordering: " + foodItem.getQuantity() + foodItem.getItemUnits() + " of " + foodItem.getName()+"\n");
-        return true;
+        if (foodItem.equals(null)) return false;
+        else return true;
     }
 }
