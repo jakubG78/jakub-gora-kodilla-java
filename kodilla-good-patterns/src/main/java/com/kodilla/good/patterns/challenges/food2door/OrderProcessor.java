@@ -11,22 +11,21 @@ public class OrderProcessor {
         this.foodOrderRepository = foodOrderRepository;
     }
 
-    public FoodOrderDto process(final FoodSupplier foodSupplier) {
+    public FoodOrderDto process(String suplierName) {
+        FoodSupplier foodSupplier = new FoodSupplier(suplierName);
         foodOrderRequest = new FoodOrderRequest(foodSupplier, null);
+        foodOrderService = FoodOrderServiceFactory.getOrderService(foodSupplier.getName());
         if (foodSupplier.getName().equals("ExtraFoodShop")) {
             ExtraFoodShopOrderRequestRetriver extraFoodShopOrderRequestRetriver = new ExtraFoodShopOrderRequestRetriver();
             foodOrderRequest = extraFoodShopOrderRequestRetriver.retrive();
-            foodOrderService = new ExtraFoodShopOrderService();
         } else {
             if (foodSupplier.getName().equals("HealthyShop")) {
                 HealthyShopOrderRequestRetriver healthyShopOrderRequestRetriver = new HealthyShopOrderRequestRetriver();
                 foodOrderRequest = healthyShopOrderRequestRetriver.retrive();
-                foodOrderService = new HealthyShopOrderService();
             } else {
                 if (foodSupplier.getName().equals("GlutenFreeShop")) {
                     GlutenFreeShopOrderRequestRetriver glutenFreeShopOrderRequestRetriver = new GlutenFreeShopOrderRequestRetriver();
                     foodOrderRequest = glutenFreeShopOrderRequestRetriver.retrive();
-                    foodOrderService = new GlutenFreeShopOrderService();
                 }
             }
         }
@@ -40,5 +39,4 @@ public class OrderProcessor {
             return new FoodOrderDto(foodOrderRequest.getFoodSupplier(), foodOrderRequest.getFoodItem(), false);
         }
     }
-
 }
