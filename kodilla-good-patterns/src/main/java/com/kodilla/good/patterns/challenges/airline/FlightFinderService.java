@@ -28,7 +28,7 @@ public class FlightFinderService {
         Stream<Flight> transferFlightsStream = flightReposiotry.getRepository().stream()
                 .filter(entry -> entry.equals(new Flight(departureAirport, transferAirport)));
         Stream<Flight> arrivalFlightStream = flightReposiotry.getRepository().stream()
-                .filter(entry -> entry.equals(new Flight(transferAirport,destinationAirport)));
+                .filter(entry -> entry.equals(new Flight(transferAirport, destinationAirport)));
         List<Flight> resultFlighList = Stream.concat(transferFlightsStream, arrivalFlightStream)
                 .collect(Collectors.toList());
         return resultFlighList;

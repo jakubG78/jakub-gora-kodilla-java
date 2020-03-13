@@ -10,7 +10,7 @@ public class Application {
         System.out.println(result);
         result = flightFinderService.flindDirectFlightsTo(Airport.WARSZAWA);
         System.out.println(result);
-        result = flightFinderService.findInDirectFlightsFromTo(Airport.WROCLAW,Airport.WARSZAWA, Airport.GDANSK);
+        result = flightFinderService.findInDirectFlightsFromTo(Airport.WROCLAW, Airport.WARSZAWA, Airport.GDANSK);
         System.out.println(result);
     }
 }
