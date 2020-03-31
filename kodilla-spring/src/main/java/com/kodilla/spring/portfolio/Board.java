@@ -1,8 +1,5 @@
 package com.kodilla.spring.portfolio;
 
-import org.springframework.stereotype.Repository;
-
-@Repository
 public class Board {
     public TaskList toDoList;
     public TaskList inProgressList;

@@ -16,7 +16,7 @@ public class CalculatorTestSuite {
         Calculator calculator = context.getBean(Calculator.class);
         //When
         System.out.println("Adding " + a + " and " + b + " equals: " + calculator.add(a,b));
-        System.out.println("Subtracting " +` b + " from " + a + " equals: " + calculator.sub(a,b));
+        System.out.println("Subtracting " + b + " from " + a + " equals: " + calculator.sub(a,b));
         System.out.println("Multiplying " + a + " and " + b + " equals: " + calculator.add(a,b));
         System.out.println("Dividing " + a + " by " + b + " equals: " + calculator.add(a,b));
         //Then
