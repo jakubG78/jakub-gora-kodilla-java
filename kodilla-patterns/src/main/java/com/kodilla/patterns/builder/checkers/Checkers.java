@@ -45,7 +45,7 @@ public class Checkers {
                         Board.MIN_INDEX + " and " + Board.MAX_INDEX);
             }
             if (board.getFigure(x, y) == null) {
-                board.setFigure(FigureFactory.makeFigure(figureType, figureColor, x, y);
+                board.setFigure(FigureFactory.makeFigure(figureType, figureColor), x, y);
             } else {
                 throw new IllegalStateException("Position " + x + "," + y + " is already occupied");
             }

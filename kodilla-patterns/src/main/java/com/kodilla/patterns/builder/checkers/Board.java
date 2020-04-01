@@ -33,7 +33,7 @@ public class Board {
                 }
                 result += "\n";
             }
-            return result;
         }
+        return result;
     }
 }
