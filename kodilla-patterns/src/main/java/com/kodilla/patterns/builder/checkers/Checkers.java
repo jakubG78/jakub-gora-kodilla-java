@@ -1,7 +1,6 @@
 package com.kodilla.patterns.builder.checkers;
 
 public class Checkers {
-
     private final Board board;
     private final String playerOne;
     private final String playerTwo;
@@ -25,9 +24,9 @@ public class Checkers {
     }
 
     public static class CheckersBuilder {
-        private Board board;
-        private String playerOne;
-        private String playerTwo;
+        private Board board = new Board();
+        private String playerOne = "";
+        private String playerTwo = "";
 
         public CheckersBuilder PlayerOne(String playerOne) {
             this.playerOne = playerOne;
@@ -40,7 +39,8 @@ public class Checkers {
         }
 
         public CheckersBuilder Figure(String figureType, String figureColor, int x, int y) {
-            if (x > Board.MAX_INDEX || x < Board.MIN_INDEX || y > Board.MAX_INDEX || y < Board.MIN_INDEX) {
+            if (x > Board.MAX_INDEX || x < Board.MIN_INDEX ||
+                    y > Board.MAX_INDEX || y < Board.MIN_INDEX) {
                 throw new IllegalStateException("x and y should be in range between " +
                         Board.MIN_INDEX + " and " + Board.MAX_INDEX);
             }
@@ -57,11 +57,11 @@ public class Checkers {
                 throw new IllegalStateException("There is no player One specified!");
             }
             if (playerTwo.length() == 0) {
-                throw new IllegalStateException("There is no player Two specified!");
+                throw new IllegalStateException("There is no player Two specified");
             }
             boolean white = false, black = false;
-            for (int x = Board.MIN_INDEX; x <= Board.MAX_INDEX; x++) {
-                for (int y = Board.MIN_INDEX; y <= Board.MAX_INDEX; y++) {
+            for(int x = Board.MIN_INDEX; x <= Board.MAX_INDEX; x++) {
+                for(int y = Board.MIN_INDEX; y <= Board.MAX_INDEX; y++) {
                     Figure figure = board.getFigure(x, y);
                     if (figure != null) {
                         if (figure.getColor().equals(Figure.BLACK)) {
@@ -76,6 +76,6 @@ public class Checkers {
                 throw new IllegalStateException("There are no figures of both colors on the board!");
             }
             return new Checkers(board, playerOne, playerTwo);
-        }
+        };
     }
 }
