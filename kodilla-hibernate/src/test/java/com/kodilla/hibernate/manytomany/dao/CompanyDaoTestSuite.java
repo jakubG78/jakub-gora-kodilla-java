@@ -9,12 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
 
     @Autowired
     CompanyDao companyDao;
+
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany() {
@@ -60,5 +65,69 @@ public class CompanyDaoTestSuite {
         } catch (Exception e) {
             //do nothing
         }
+    }
+
+    @Test
+    public void testFirsThreeLettersCompanyNameQuery() {
+        //Given
+
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getId();
+        companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
+
+        //When
+        List<Company> resultCompanyList = companyDao.retrieveCompanyWithFirstThreeLetters("Gre");
+
+        //Then
+        Assert.assertEquals(1, resultCompanyList.size());
+
+        //CleanUp
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        } catch (Exception e) {
+            //do nothing
+        }
+    }
+
+    @Test
+    public void testLastNameEmployeeQuery(){
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarkson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        Employee mariusKovalsky = new Employee("Marius", "Kovalsky");
+
+        Company softwareMachine = new Company("Software Machine");
+
+        softwareMachine.getEmployees().add(johnSmith);
+        softwareMachine.getEmployees().add(stephanieClarckson);
+        softwareMachine.getEmployees().add(lindaKovalsky);
+        softwareMachine.getEmployees().add(mariusKovalsky);
+
+        johnSmith.getCompanies().add(softwareMachine);
+        stephanieClarckson.getCompanies().add(softwareMachine);
+        lindaKovalsky.getCompanies().add(softwareMachine);
+        mariusKovalsky.getCompanies().add(softwareMachine);
+
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+
+        //When
+        List<Employee> resultEmployeesList = employeeDao.retrieveEmployeeWithLastName("Kovalsky");
+
+        //Then
+        Assert.assertEquals(2, resultEmployeesList.size());
+
+        //CleanUp
+        companyDao.deleteById(softwareMachineId);
     }
 }
