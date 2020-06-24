@@ -2,6 +2,9 @@ package com.kodilla.hibernate.manytomany.dao;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
+import com.kodilla.hibernate.manytomany.facade.CompanyAndEmployeeFacade;
+import com.kodilla.hibernate.manytomany.facade.CompanyDto;
+import com.kodilla.hibernate.manytomany.facade.EmployeeDto;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +23,9 @@ public class CompanyDaoTestSuite {
 
     @Autowired
     EmployeeDao employeeDao;
+
+    @Autowired
+    CompanyAndEmployeeFacade companyAndEmployeeFacade;
 
     @Test
     public void testSaveManyToMany() {
@@ -99,6 +105,37 @@ public class CompanyDaoTestSuite {
     }
 
     @Test
+    public void testCompanyNameContainQuery() {
+        //Given
+
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Big Data Maesters");
+        Company greyMatter = new Company("Grey Matter Data");
+
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        int dataMaestersId = dataMaesters.getId();
+        companyDao.save(greyMatter);
+        int greyMatterId = greyMatter.getId();
+
+        //When
+        List<Company> resultCompanyList = companyDao.retrieveCompanyWithNameContain("Data");
+
+        //Then
+        Assert.assertEquals(2, resultCompanyList.size());
+
+        //CleanUp
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        } catch (Exception e) {
+            //do nothing
+        }
+    }
+
+    @Test
     public void testLastNameEmployeeQuery(){
         //Given
         Employee johnSmith = new Employee("John", "Smith");
@@ -129,5 +166,38 @@ public class CompanyDaoTestSuite {
 
         //CleanUp
         companyDao.deleteById(softwareMachineId);
+    }
+
+    @Test
+    public void CompanyAndEmployeeFacade(){
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarkson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        Employee mariusKovalsky = new Employee("Marius", "Kovalsky");
+        employeeDao.save(johnSmith);
+
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+        employeeDao.save(mariusKovalsky);
+
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Big Data Maesters");
+        Company greyMatter = new Company("Grey Matter Data");
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMaesters);
+        companyDao.save(greyMatter);
+
+        //When
+        List<EmployeeDto> resultEmployeesDtoList = companyAndEmployeeFacade.findEmployeesWithLastName("Smith");
+        List<CompanyDto> resultCompanyDtoList = companyAndEmployeeFacade.findCompanyWithName("Data");
+
+        //Then
+        Assert.assertEquals(1, resultEmployeesDtoList.size());
+        Assert.assertEquals(2, resultCompanyDtoList.size());
+
+        //CleanUp
+        companyDao.deleteAll();
+        employeeDao.deleteAll();
     }
 }

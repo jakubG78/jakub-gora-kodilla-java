@@ -11,6 +11,12 @@ import java.util.List;
                 " WHERE COMPANY_NAME REGEXP CONCAT('^', :FIRSTTHREELETTERS)",
         resultClass = Company.class
 )
+@NamedNativeQuery(
+        name = "Company.retrieveCompanyWithNameContain",
+        query = "SELECT * FROM COMPANIES" +
+                " WHERE COMPANY_NAME LIKE CONCAT('%', :COMPANY_NAME_CONTAIN, '%')",
+        resultClass = Company.class
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
