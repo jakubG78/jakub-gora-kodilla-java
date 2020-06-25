@@ -14,4 +14,10 @@ public class EmployeeMapper {
                 .map(e-> new EmployeeDto(e.getFirstName(),e.getLastName()))
                 .collect(Collectors.toList());
     }
+
+    public Employee mapToEmployee (EmployeeDto employeeDto){
+        return new Employee(
+                employeeDto.getFirstName(),
+                employeeDto.getLastName());
+    }
 }

@@ -8,9 +8,14 @@ import java.util.stream.Collectors;
 
 @Component
 public class CompanyMapper {
-    public List<CompanyDto> mapToCompanyDtoList (final List<Company> companies){
+    public List<CompanyDto> mapToCompanyDtoList(final List<Company> companies) {
         return companies.stream()
-                .map(c-> new CompanyDto(c.getName()))
+                .map(c -> new CompanyDto(c.getName()))
                 .collect(Collectors.toList());
+    }
+
+    public Company mapToCompany(final CompanyDto companyDto) {
+        return new Company(
+                companyDto.getCompanyName());
     }
 }

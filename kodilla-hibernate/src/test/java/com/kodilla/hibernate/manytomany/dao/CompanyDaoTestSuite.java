@@ -3,8 +3,6 @@ package com.kodilla.hibernate.manytomany.dao;
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
 import com.kodilla.hibernate.manytomany.facade.CompanyAndEmployeeFacade;
-import com.kodilla.hibernate.manytomany.facade.CompanyDto;
-import com.kodilla.hibernate.manytomany.facade.EmployeeDto;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -136,7 +134,7 @@ public class CompanyDaoTestSuite {
     }
 
     @Test
-    public void testLastNameEmployeeQuery(){
+    public void testLastNameEmployeeQuery() {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarkson");
@@ -166,38 +164,5 @@ public class CompanyDaoTestSuite {
 
         //CleanUp
         companyDao.deleteById(softwareMachineId);
-    }
-
-    @Test
-    public void CompanyAndEmployeeFacade(){
-        //Given
-        Employee johnSmith = new Employee("John", "Smith");
-        Employee stephanieClarckson = new Employee("Stephanie", "Clarkson");
-        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
-        Employee mariusKovalsky = new Employee("Marius", "Kovalsky");
-        employeeDao.save(johnSmith);
-
-        employeeDao.save(stephanieClarckson);
-        employeeDao.save(lindaKovalsky);
-        employeeDao.save(mariusKovalsky);
-
-        Company softwareMachine = new Company("Software Machine");
-        Company dataMaesters = new Company("Big Data Maesters");
-        Company greyMatter = new Company("Grey Matter Data");
-        companyDao.save(softwareMachine);
-        companyDao.save(dataMaesters);
-        companyDao.save(greyMatter);
-
-        //When
-        List<EmployeeDto> resultEmployeesDtoList = companyAndEmployeeFacade.findEmployeesWithLastName("Smith");
-        List<CompanyDto> resultCompanyDtoList = companyAndEmployeeFacade.findCompanyWithName("Data");
-
-        //Then
-        Assert.assertEquals(1, resultEmployeesDtoList.size());
-        Assert.assertEquals(2, resultCompanyDtoList.size());
-
-        //CleanUp
-        companyDao.deleteAll();
-        employeeDao.deleteAll();
     }
 }
